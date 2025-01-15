@@ -18,13 +18,21 @@ class Resistor:
         Constructor for the Resistor object
         :param data: dict{"name": str, "bus1": str, "bus2": str, "r": float}
         """
-        # Error check for if data is dict type and if there are any missing keys
+        # Error check for if data is correct type and if there are any missing keys
         if not isinstance(data, dict):
-            raise ValueError("The provided data must be a dictionary.")
+            raise TypeError("The provided data must be a dictionary.")
         required_attributes = ["name", "bus1", "bus2", "r"]
         missing = [attr for attr in required_attributes if attr not in data]
         if missing:
             raise KeyError(f"Missing required attribute(s): {', '.join(missing)}")
+        if not isinstance(data["name"], str):
+            raise TypeError("Attribute 'name' must be of type str.")
+        if not isinstance(data["bus1"], str):
+            raise TypeError("Attribute 'bus1' must be of type str.")
+        if not isinstance(data["bus2"], str):
+            raise TypeError("Attribute 'bus2' must be of type str.")
+        if not isinstance(data["r"], (float, int)):
+            raise TypeError("Attribute 'r' must be of type float or int.")
 
         # Assign attributes
         self.name = data["name"]
