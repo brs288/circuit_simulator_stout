@@ -16,7 +16,7 @@ class Load:
     def __init__(self, data):
         """
         Constructor for the Load object
-        :param data: dict{"name": str, "bus1": str, "p": float, "v": float}
+        :param data: Dict["name": str, "bus1": str, "p": float, "v": float]
         """
         # Error check for if data is correct type and if there are any missing keys
         if not isinstance(data, dict):
@@ -43,32 +43,38 @@ class Load:
         self.g = self.calc_g()
 
     def calc_r(self):
+        """
+        Calculate r defined as v ** 2 / p
+        :return: float - internally calculated resistance
+        """
         return (self.v ** 2)/self.p
 
     def calc_g(self):
-        """Calculate conductance G as the reciprocal of resistance."""
+        """
+        Calculate g defined as reciprocal of r
+        :return: float - internally calculated conductance
+        """
         return 1 / self.r
 
     def display(self):
         """Display the attributes of the Load object."""
         print("Load Attributes:")
-        print(f"  Name: {self.name}")
-        print(f"  Bus 1: {self.bus1}")
-        print(f"  Resistance (R): {self.r:.4f} Ω")
-        print(f"  Voltage (V): {self.v:.4f} V")
-        print(f"  Conductance (G): {self.g:.4f} S")
-        print(f"  Power (P): {self.p:.4f} W")
+        print(f"\tName: {self.name}")
+        print(f"\tBus 1: {self.bus1}")
+        print(f"\tResistance (R): {self.r:.4f} Ω")
+        print(f"\tVoltage (V): {self.v:.4f} V")
+        print(f"\tConductance (G): {self.g:.4f} S")
+        print(f"\tPower (P): {self.p:.4f} W")
 
 
-# Example usage
-try:
-    load_data = {
-        "name": "L1",
-        "bus1": "A",
-        "r": 50.0,
-        "v": 230.0
-    }
-    load = Load(load_data)
-    load.display()
-except (KeyError, ValueError, TypeError) as e:
-    print(f"Error: {e}")
+'''
+# Lines for debugging
+my_data = {
+    "name": "L1",
+    "bus1": "BUS1",
+    "p": 50.,
+    "v": 230.
+}
+my_load = Load(my_data)
+my_load.display()
+'''

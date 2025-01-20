@@ -16,7 +16,7 @@ class Resistor:
     def __init__(self, data):
         """
         Constructor for the Resistor object
-        :param data: dict{"name": str, "bus1": str, "bus2": str, "r": float}
+        :param data: Dict["name": str, "bus1": str, "bus2": str, "r": float]
         """
         # Error check for if data is correct type and if there are any missing keys
         if not isinstance(data, dict):

@@ -16,7 +16,7 @@ class VSource:
     def __init__(self, data):
         """
         Constructor for the VSource object
-        :param data: dict{"name": str, "bus1": str, "v": float}
+        :param data: Dict["name": str, "bus1": str, "v": float]
         """
         # Error check for if data is correct type and if there are any missing keys
         if not isinstance(data, dict):
