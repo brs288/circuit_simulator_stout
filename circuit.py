@@ -107,7 +107,7 @@ class Circuit:
         """
         print("Bus Voltages Attributes:")
         for current_bus in self.buses:
-            print(f"\tName: {current_bus}\t\tVoltage: {self.buses[current_bus].v}")
+            print(f"\tName: {current_bus}\t\tVoltage: {self.buses[current_bus].v:.4f}")
 
     def print_circuit_current(self):
         """
