@@ -11,34 +11,21 @@ Date: 2025-01-14
 class Load:
     """
     Class to hold data on given Load object and to calculate conductance and power. Data given in
-    form of dictionary including "name", "bus1", "v", and "p"
+    form of name: str, bus1: str, v: float, and p: float
     """
-    def __init__(self, data):
+    def __init__(self, name: str, bus1: str, p: float, v: float):
         """
         Constructor for the Load object
-        :param data: Dict["name": str, "bus1": str, "p": float, "v": float]
+        :param name: Name for this Load object
+        :param bus1: Bus connection to ground
+        :param p: Rated power dissipated by load
+        :param v: Rated voltage
         """
-        # Error check for if data is correct type and if there are any missing keys
-        if not isinstance(data, dict):
-            raise TypeError("The provided data must be a dictionary.")
-        required_attributes = ["name", "bus1", "p", "v"]
-        missing = [attr for attr in required_attributes if attr not in data]
-        if missing:
-            raise KeyError(f"Missing required attribute(s): {', '.join(missing)}")
-        if not isinstance(data["name"], str):
-            raise TypeError("Attribute 'name' must be of type str.")
-        if not isinstance(data["bus1"], str):
-            raise TypeError("Attribute 'bus1' must be of type str.")
-        if not isinstance(data["p"], (float, int)):
-            raise TypeError("Attribute 'p' must be of type float or int.")
-        if not isinstance(data["v"], (float, int)):
-            raise TypeError("Attribute 'v' must be of type float or int.")
-
         # Assign attributes
-        self.name = data["name"]
-        self.bus1 = data["bus1"]
-        self.p = float(data["p"])
-        self.v = float(data["v"])
+        self.name = name
+        self.bus1 = bus1
+        self.p = p
+        self.v = v
         self.r = self.calc_r()
         self.g = self.calc_g()
 
@@ -54,7 +41,7 @@ class Load:
         Calculate g defined as reciprocal of r
         :return: float - internally calculated conductance
         """
-        return 1 / self.r
+        return self.p/(self.v ** 2)
 
     def display(self):
         """Display the attributes of the Load object."""
@@ -69,12 +56,10 @@ class Load:
 
 '''
 # Lines for debugging
-my_data = {
-    "name": "L1",
-    "bus1": "BUS1",
-    "p": 50.,
-    "v": 230.
-}
-my_load = Load(my_data)
+name = "L1"
+bus1 = "BUS1"
+p = 50
+v = 230
+my_load = Load(name=name, bus1=bus1, p=p, v=v)
 my_load.display()
 '''

@@ -11,34 +11,21 @@ Date: 2025-01-14
 class Resistor:
     """
     Class to hold data on given Resistor object and to calculate conductance. Data given in form of
-    dictionary including "name", "bus1", "bus2", and "r"
+    name: str, bus1: str, bus2: str, and r: float
     """
-    def __init__(self, data):
+    def __init__(self, name: str, bus1: str, bus2: str, r: float):
         """
         Constructor for the Resistor object
-        :param data: Dict["name": str, "bus1": str, "bus2": str, "r": float]
+        :param name: Name for this Resistor object
+        :param bus1: First bus connection
+        :param bus2: Second bus connection
+        :param r: Ohmic resistance value
         """
-        # Error check for if data is correct type and if there are any missing keys
-        if not isinstance(data, dict):
-            raise TypeError("The provided data must be a dictionary.")
-        required_attributes = ["name", "bus1", "bus2", "r"]
-        missing = [attr for attr in required_attributes if attr not in data]
-        if missing:
-            raise KeyError(f"Missing required attribute(s): {', '.join(missing)}")
-        if not isinstance(data["name"], str):
-            raise TypeError("Attribute 'name' must be of type str.")
-        if not isinstance(data["bus1"], str):
-            raise TypeError("Attribute 'bus1' must be of type str.")
-        if not isinstance(data["bus2"], str):
-            raise TypeError("Attribute 'bus2' must be of type str.")
-        if not isinstance(data["r"], (float, int)):
-            raise TypeError("Attribute 'r' must be of type float or int.")
-
         # Assign attributes
-        self.name = data["name"]
-        self.bus1 = data["bus1"]
-        self.bus2 = data["bus2"]
-        self.r = data["r"]
+        self.name = name
+        self.bus1 = bus1
+        self.bus2 = bus2
+        self.r = r
         self.g = self.calc_g()
 
     def calc_g(self):
@@ -63,12 +50,10 @@ class Resistor:
 
 '''
 # Lines for debugging
-my_data = {
-    "name": "R1",
-    "bus1": "BUS1",
-    "bus2": "BUS2",
-    "r": 5.25
-}
-my_resistor = Resistor(my_data)
+name = "R1"
+bus1 = "BUS1"
+bus2 = "BUS2"
+r = 5.25
+my_resistor = Resistor(name=name, bus1=bus1, bus2=bus2, r=r)
 my_resistor.display()
 '''

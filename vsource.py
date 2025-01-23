@@ -10,32 +10,19 @@ Date: 2025-01-14
 
 class VSource:
     """
-    Class to hold data on given VSource object. Data given in form of dictionary including "name",
-    "bus1", and "v"
+    Class to hold data on given VSource object. Data given in form of name: str, bus1: str, v: float
     """
-    def __init__(self, data):
+    def __init__(self, name: str, bus1: str, v: float):
         """
-        Constructor for the VSource object
-        :param data: Dict["name": str, "bus1": str, "v": float]
+        Constructor for VSource object
+        :param name: Name for this VSource object
+        :param bus1: Bus connection
+        :param v: Voltage provided by this source
         """
-        # Error check for if data is correct type and if there are any missing keys
-        if not isinstance(data, dict):
-            raise TypeError("The provided data must be a dictionary.")
-        required_attributes = ["name", "bus1", "v"]
-        missing = [attr for attr in required_attributes if attr not in data]
-        if missing:
-            raise KeyError(f"Missing required attribute(s): {', '.join(missing)}")
-        if not isinstance(data["name"], str):
-            raise TypeError("Attribute 'name' must be of type str.")
-        if not isinstance(data["bus1"], str):
-            raise TypeError("Attribute 'bus1' must be of type str.")
-        if not isinstance(data["v"], (float, int)):
-            raise TypeError("Attribute 'v' must be of type float or int.")
-
         # Assign attributes
-        self.name = data["name"]
-        self.bus1 = data["bus1"]
-        self.v = float(data["v"])
+        self.name = name
+        self.bus1 = bus1
+        self.v = v
 
     def display(self):
         """
@@ -50,11 +37,9 @@ class VSource:
 
 '''
 # Example usage
-my_data = {
-    "name": "V1",
-    "bus1": "BUS1",
-    "v": 5/1.01
-}
-vsource = VSource(my_data)
+name = "V1"
+bus1 = "BUS1"
+v = 5/1.01
+vsource = VSource(name=name, bus1=bus1, v=v)
 vsource.display()
 '''

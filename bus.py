@@ -13,25 +13,21 @@ class Bus:
     Class to hold data on given Bus object and to calculate conductance. Data given in form of
     string used as a name
     """
-    def __init__(self, name=""):
+    def __init__(self, name: str):
         """
         Constructor for the Bus object
-        :param name: str
+        :param name: Name for the Bus object
         """
-        # Error check for if name is str type
-        if not isinstance(name, str):
-            raise TypeError("The provided name must be of type str.")
-
         # Assign attributes
         self.name = name
-        self.v = 0
-        self.set_bus_v()
+        self.v = float
+        self.set_bus_v(0.)
 
-    def set_bus_v(self, v=0.):
+    def set_bus_v(self, v: float):
         """
         Set bus voltage based on circuit calculations. Updates when source is created or power flow
         calculation
-        :param v: float
+        :param v: Voltage at this bus
         :return:
         """
         self.v = v
