@@ -1,0 +1,65 @@
+@startuml
+
+'Initialized hierarchy for classes
+Circuit o-- Resistor
+Circuit o-- Load
+Circuit o-- VSource
+Circuit o-- Bus
+Solution o-- Circuit
+
+'Element classes
+class Bus {
+    +name: str
+    +v: float
+    +set_bus_v(v: float): void
+    +display(): void
+}
+class Resistor {
+    +name: str
+    +bus1: str
+    +bus2: str
+    +r: float
+    +g: float
+    +calc_g(): void
+    +display(): void
+}
+class Load {
+    +name: str
+    +bus1: str
+    +p: float
+    +v: float
+    +r: float
+    +g: float
+    +calc_r(): void
+    +calc_g(): void
+    +display(): void
+}
+class VSource {
+    +name: str
+    +bus1: str
+    +v: float
+    +display(): void
+}
+
+'Circuit and Solution classes
+class Circuit {
+    +name: str
+    +buses: dict[str, Bus]
+    +resistors: dict[str, Resistor]
+    +loads: dict[str, Load]
+    +vsource: VSource
+    +i: float
+    +add_bus(name: str): void
+    +add_resistor_element(name: str, bus1: str, bus2: str, r: float): void
+    +add_load_element(name: str, bus1: str, p: float, v: float): void
+    +add_vsource_element(name: str, bus1: str, v: float): void
+    +set_i(i: float): void
+    +print_nodal_voltage(): void
+    +print_circuit_current(): void
+}
+class Solution {
+    +circuit: Circuit
+    +do_power_flow(): void
+}
+
+@enduml
