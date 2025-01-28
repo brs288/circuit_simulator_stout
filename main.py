@@ -23,8 +23,8 @@ v = 100
 v_in = 100
 
 # Bus names
-first_bus = "bus A"
-second_bus = "bus B"
+first_bus = "BUS1"
+second_bus = "BUS2"
 
 # ---------------------------- #
 
